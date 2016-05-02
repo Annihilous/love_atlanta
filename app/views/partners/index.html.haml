@@ -1,20 +1,21 @@
-%p#notice= notice
-%h1 Listing Partners
-%table
-  %thead
-    %tr
-      %th Name
-      %th Description
-      %th Website
-      %th{:colspan => "3"}
-  %tbody
-    - @partners.each do |partner|
+.container
+  %p#notice= notice
+  %h1 Listing Partners
+  %table
+    %thead
       %tr
-        %td= partner.name
-        %td= partner.description
-        %td= partner.website
-        %td= link_to 'Show', partner_events_path(partner)
-        %td= link_to 'Edit', edit_partner_path(partner)
-        %td= link_to 'Destroy', partner, method: :delete, data: { confirm: 'Are you sure?' }
-%br/
-= link_to 'New Partner', new_partner_path
+        %th Name
+        %th Description
+        %th Website
+        %th{:colspan => "3"}
+    %tbody
+      - @partners.each do |partner|
+        %tr
+          %td= partner.name
+          %td= partner.description
+          %td= partner.website
+          %td= link_to 'Show', partner_events_path(partner)
+          %td= link_to 'Edit', edit_partner_path(partner)
+          %td= link_to 'Destroy', partner, method: :delete, data: { confirm: 'Are you sure?' }
+  %br
+  = link_to 'New Partner', new_partner_path, class: "btn btn-primary"

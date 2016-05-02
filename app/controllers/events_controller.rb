@@ -5,8 +5,7 @@ class EventsController < ApplicationController
   # GET /events
   # GET /events.json
   def index
-    @event  = Event.new
-    @events = Event.all
+    @events = @partner.events.all
   end
 
   # GET /events/1
@@ -28,6 +27,7 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
+    @event.partner_id = params[:partner_id]
 
     respond_to do |format|
       if @event.save
@@ -45,8 +45,8 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to @event, notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: @event }
+        format.html { redirect_to partner_events_path(@partner), notice: 'Event was successfully updated.' }
+        format.json { render :show, status: :ok, location: partner_events_path(@partner) }
       else
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
