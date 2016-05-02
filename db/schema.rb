@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160502152413) do
+ActiveRecord::Schema.define(version: 20160502153114) do
 
   create_table "events", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20160502152413) do
     t.datetime "end_time"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+    t.integer  "partner_id"
   end
 
   create_table "partners", force: :cascade do |t|
@@ -29,13 +30,6 @@ ActiveRecord::Schema.define(version: 20160502152413) do
     t.string   "website"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
-  end
-
-  create_table "partnerships", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "partner_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "registrations", force: :cascade do |t|
