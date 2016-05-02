@@ -1,10 +1,11 @@
-%p#notice= notice
-%p
-  %strong Name:
-  = @volunteer.name
-%p
-  %strong Email:
-  = @volunteer.email
-= link_to 'Edit', edit_volunteer_path(@volunteer)
-|
-= link_to 'Back', volunteers_path
+.container
+  %p#notice= notice
+  %h1
+    = @volunteer.name
+  %p
+    = @volunteer.email
+
+  %h3 Events
+  - @volunteer.events.each do |event|
+    .div
+      = link_to event.name, event

@@ -10,5 +10,6 @@
   = link_to @partner.website, target: :blank do
     = @partner.website
 
-  %h2 New Event
-  = render 'events/form'
+  %h3 Events
+  - @partner.events.each do | event |
+    = link_to "#{event.name}", event

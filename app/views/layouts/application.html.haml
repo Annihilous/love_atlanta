@@ -25,5 +25,12 @@
         %ul.nav.navbar-nav
           %li
             = link_to 'Partners', partners_path
-            
+          %li
+            = link_to 'Events', events_path
+          %li
+            = link_to 'Volunteers', volunteers_path
+          %li
+            = link_to 'partners.json', partners_path(format: :json), target: :blank
+          %li
+            = link_to 'events.json', events_path(format: :json), target: :blank
   = yield

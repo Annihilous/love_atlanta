@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
-  resources :partners do
-    resources :events
+  resources :partners
+  resources :events do
+    member do
+      post :add_volunteer
+    end
   end
 
   resources :volunteers
-  
-  post "partners/:partner_id/events/new"    => "events#new"
 
   root "partners#index"
 

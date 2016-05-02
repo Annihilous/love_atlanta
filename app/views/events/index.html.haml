@@ -1,14 +1,8 @@
 .container
   %p#notice= notice
-  
-  .row
-    .col-xs-10
-      %h1
-        = @partner.name
-    .col-xs-2
-      %h3.text-center
-        = link_to 'Edit', edit_partner_path(@partner)
 
+  %h1
+    Events
   %hr
   %table
     %thead
@@ -16,8 +10,8 @@
         %th Name
         %th Description
         %th Spots
-        %th Start time
-        %th End time
+        %th Start
+        %th End
         %th{:colspan => "2"}
     %tbody
       - @events.each do |event|
@@ -27,9 +21,9 @@
           %td= event.spots
           %td= event.start_time
           %td= event.end_time
-          %td= link_to 'Show', partner_event_path(@partner, event)
-          %td= link_to 'Edit', edit_partner_event_path(@partner, event)
+          %td= link_to 'Show', event_path(event)
+          %td= link_to 'Edit', edit_event_path(event)
 
   %br
-  = link_to new_partner_event_path(@partner), class: "btn btn-primary" do
+  = link_to new_event_path, class: "btn btn-primary" do
     New Event

@@ -1,16 +1,16 @@
 class EventsController < ApplicationController
-  before_action :set_partner
-  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :set_event, only: [:show, :edit, :update, :destroy, :add_volunteer]
 
   # GET /events
   # GET /events.json
   def index
-    @events = @partner.events.all
+    @events = Event.all
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
+    @volunteer = Volunteer.new
   end
 
   # GET /events/new
@@ -23,6 +23,14 @@ class EventsController < ApplicationController
   def edit
   end
 
+  def add_volunteer
+    if @event.spots_remaining > 0
+      name  = params[:name]
+      email = params[:email]
+      @event.add_volunteer(name, email)
+    end
+  end
+
   # POST /events
   # POST /events.json
   def create
@@ -31,8 +39,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to partner_events_path(@partner), notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: partner_events_path(@partner) }
+        format.html { redirect_to events_path(@event), notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: events_path(@event) }
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -45,8 +53,8 @@ class EventsController < ApplicationController
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to partner_events_path(@partner), notice: 'Event was successfully updated.' }
-        format.json { render :show, status: :ok, location: partner_events_path(@partner) }
+        format.html { redirect_to events_path(@event), notice: 'Event was successfully updated.' }
+        format.json { render :show, status: :ok, location: events_path(@event) }
       else
         format.html { render :edit }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -68,10 +76,6 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
-    end
-
-    def set_partner
-      @partner = Partner.find(params[:partner_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

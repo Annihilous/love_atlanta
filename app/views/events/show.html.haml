@@ -1,20 +1,56 @@
 .container
   %p#notice= notice
-  %h1
-    %strong
-      = @event.name
-  %h3
-    Brought to you by
-    = @event.partner.name
-  %p
+  .row
+    .col-xs-6
+      %h1
+        %strong
+          = @event.name
+      %p
+        Brought to you by
+        = @event.partner.name
+    .col-xs-6.text-right
+      %h3
+        #{@event.start_time.strftime("%Y-%m-%d")}
+        .text-muted
+          #{@event.start_time.strftime("%l:%M %P")} to #{@event.end_time.strftime("%l:%M %P")}
+
+  %hr
+  %p.well
     %strong
       = @event.description
   %p
-    %strong Spots:
+    %strong Volunteers:
     = @event.spots
+
+  %h2 Volunteer
   %p
-    %strong Start:
-    = @event.start_time
-  %p
-    %strong End:
-    = @event.end_time
+    = add_volunteer_event_url(@event)
+  %input#love-atlanta-volunteer-name.form-control{:placeholder => "name"}
+  %br
+  %input#love-atlanta-volunteer-email.form-control{:placeholder => "email"}
+  %br
+  %button#love-atlanta-volunteer-json-trigger.btn.btn-primary Volunteer
+
+
+:javascript
+  $('#love-atlanta-volunteer-json-trigger').click(function(e){
+    console.log('email submitted');
+
+    var route  = "#{add_volunteer_event_url(@event)}";
+    var name   = $('#love-atlanta-volunteer-name').val();
+    var email  = $('#love-atlanta-volunteer-email').val();
+
+    console.log('Route: ' + route);
+    console.log('Name: ' + name);
+    console.log('Email: ' + email);
+
+    $.ajax({
+      method: "POST",
+      url: route,
+      dataType: 'json',
+      data: {
+        'name'  : name,
+        'email' : email,
+      },
+    });
+  });
