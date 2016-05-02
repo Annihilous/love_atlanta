@@ -1,9 +1,11 @@
 class EventsController < ApplicationController
+  before_action :set_partner
   before_action :set_event, only: [:show, :edit, :update, :destroy]
 
   # GET /events
   # GET /events.json
   def index
+    @event  = Event.new
     @events = Event.all
   end
 
@@ -14,6 +16,7 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
+    # raise "#{params}"
     @event = Event.new
   end
 
@@ -28,8 +31,8 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to @event, notice: 'Event was successfully created.' }
-        format.json { render :show, status: :created, location: @event }
+        format.html { redirect_to partner_events_path(@partner), notice: 'Event was successfully created.' }
+        format.json { render :show, status: :created, location: partner_events_path(@partner) }
       else
         format.html { render :new }
         format.json { render json: @event.errors, status: :unprocessable_entity }
@@ -65,6 +68,10 @@ class EventsController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_event
       @event = Event.find(params[:id])
+    end
+
+    def set_partner
+      @partner = Partner.find(params[:partner_id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

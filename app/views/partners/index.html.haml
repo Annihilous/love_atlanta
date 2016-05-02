@@ -13,7 +13,7 @@
         %td= partner.name
         %td= partner.description
         %td= partner.website
-        %td= link_to 'Show', partner
+        %td= link_to 'Show', partner_events_path(partner)
         %td= link_to 'Edit', edit_partner_path(partner)
         %td= link_to 'Destroy', partner, method: :delete, data: { confirm: 'Are you sure?' }
 %br/

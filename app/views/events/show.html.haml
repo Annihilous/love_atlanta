@@ -1,19 +1,17 @@
-%p#notice= notice
-%p
-  %strong Name:
-  = @event.name
-%p
-  %strong Description:
-  = @event.description
-%p
-  %strong Spots:
-  = @event.spots
-%p
-  %strong Start time:
-  = @event.start_time
-%p
-  %strong End time:
-  = @event.end_time
-= link_to 'Edit', edit_event_path(@event)
-|
-= link_to 'Back', events_path
+.container
+  %p#notice= notice
+  %h1
+    %strong
+      = @event.name
+  %p
+    %strong
+      = @event.description
+  %p
+    %strong Spots:
+    = @event.spots
+  %p
+    %strong Start:
+    = @event.start_time
+  %p
+    %strong End:
+    = @event.end_time

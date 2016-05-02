@@ -1,5 +1,6 @@
 class Event < ActiveRecord::Base
-  validates_presence_of :name, :description, :spots, :start_time, :end_time
+  validates_presence_of :name
+  # validates_presence_of :name, :description, :spots, :start_time, :end_time
 
   belongs_to :partner
 

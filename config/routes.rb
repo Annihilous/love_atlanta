@@ -4,6 +4,8 @@ Rails.application.routes.draw do
   end
 
   resources :volunteers
+  
+  post "partners/:partner_id/events/new"    => "events#new"
 
   root "partners#index"
 
