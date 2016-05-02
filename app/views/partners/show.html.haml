@@ -1,0 +1,13 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @partner.name
+%p
+  %strong Description:
+  = @partner.description
+%p
+  %strong Website:
+  = @partner.website
+= link_to 'Edit', edit_partner_path(@partner)
+|
+= link_to 'Back', partners_path

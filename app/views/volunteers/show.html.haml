@@ -1,0 +1,10 @@
+%p#notice= notice
+%p
+  %strong Name:
+  = @volunteer.name
+%p
+  %strong Email:
+  = @volunteer.email
+= link_to 'Edit', edit_volunteer_path(@volunteer)
+|
+= link_to 'Back', volunteers_path
