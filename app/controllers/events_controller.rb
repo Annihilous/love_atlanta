@@ -27,7 +27,7 @@ class EventsController < ApplicationController
     if @event.spots_remaining > 0
       name  = params[:name]
       email = params[:email]
-      @event.add_volunteer(name, email)
+      @volunteer = @event.add_volunteer(name, email)
     end
   end
 

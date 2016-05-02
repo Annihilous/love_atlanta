@@ -11,6 +11,11 @@ class Event < ActiveRecord::Base
     @volunteer = Volunteer.find_or_create_by(name: name, email: email)
     @volunteer.save!
     @volunteer.volunteer(id)
+    @volunteer
+  end
+
+  def spots_filled
+    volunteers.count
   end
 
   def spots_remaining

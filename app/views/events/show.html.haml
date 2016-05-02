@@ -20,11 +20,16 @@
       = @event.description
   %p
     %strong Volunteers:
+    = @event.spots_filled
+    of
     = @event.spots
+    %span 
+      %i
+        #{@event.spots_remaining} &nbsp Spots Remaining
 
   %h2 Volunteer
-  %p
-    = add_volunteer_event_url(@event)
+  %p#love-atlanta-json-feedback
+    JSON Response goes here
   %input#love-atlanta-volunteer-name.form-control{:placeholder => "name"}
   %br
   %input#love-atlanta-volunteer-email.form-control{:placeholder => "email"}
@@ -51,6 +56,21 @@
       data: {
         'name'  : name,
         'email' : email,
+      },
+      success: function(results){
+        console.log(results);
+        var response = results;
+        var name = results.name;
+
+        $.each(response, function(key, value) {
+          console.log(key);
+          console.log(value);
+        });
+
+        console.log(response.name);
+
+        console.log("submission success");
+        $('#love-atlanta-json-feedback').html("<div class='notification-text'>" + "JSON Response: " + name + " has been added to the Volunteer list." + "</div>");
       },
     });
   });
