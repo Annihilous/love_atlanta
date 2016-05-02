@@ -1,4 +1,4 @@
-= form_for(@event) do |f|
+= simple_form_for @event, url: new_partner_event_path(@partner) do |f|
   - if @event.errors.any?
     #error_explanation
       %h2
@@ -8,24 +8,14 @@
         - @event.errors.full_messages.each do |message|
           %li= message
   .field
-    = f.label :name
-    %br/
-    = f.text_field :name
+    = f.input :name, input_html: {class: "form-control"}
   .field
-    = f.label :description
-    %br/
-    = f.text_area :description
+    = f.input :description, input_html: {class: "form-control"}
   .field
-    = f.label :spots
-    %br/
-    = f.number_field :spots
+    = f.input :spots, input_html: {class: "form-control"}
   .field
-    = f.label :start_time
-    %br/
-    = f.datetime_select :start_time
+    = f.input :start_time, input_html: {class: "form-control"}
   .field
-    = f.label :end_time
-    %br/
-    = f.datetime_select :end_time
+    = f.input :end_time, input_html: {class: "form-control"}
   .actions
     = f.submit

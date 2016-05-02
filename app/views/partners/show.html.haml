@@ -1,13 +1,14 @@
-%p#notice= notice
-%p
-  %strong Name:
-  = @partner.name
-%p
-  %strong Description:
-  = @partner.description
-%p
-  %strong Website:
-  = @partner.website
-= link_to 'Edit', edit_partner_path(@partner)
-|
-= link_to 'Back', partners_path
+.container
+  %p#notice= notice
+  .pull-right
+    = link_to 'Edit', edit_partner_path(@partner)
+  %h1
+    = @partner.name
+  %p
+    %strong
+      = @partner.description
+  = link_to @partner.website, target: :blank do
+    = @partner.website
+
+  %h2 New Event
+  = render 'events/form'

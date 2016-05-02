@@ -10,6 +10,7 @@ class PartnersController < ApplicationController
   # GET /partners/1
   # GET /partners/1.json
   def show
+    @event = Event.new
   end
 
   # GET /partners/new
