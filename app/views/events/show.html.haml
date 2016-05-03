@@ -19,24 +19,30 @@
   %p.well
     %strong
       = @event.description
-  %p
-    %strong Volunteers:
-    = @event.spots_filled
-    of
-    = @event.spots
-    %span 
+  %h2
+    %strong Volunteer
+  %br
+  .row
+    .col-sm-6
+      %h3 Join Us!
+      %p#love-atlanta-json-feedback
+        JSON Response goes here
+      %input#love-atlanta-volunteer-name.form-control{:placeholder => "name"}
+      %br
+      %input#love-atlanta-volunteer-email.form-control{:placeholder => "email"}
+      %br
+      %button#love-atlanta-volunteer-json-trigger.btn.btn-primary Volunteer
+    .col-sm-6
+      %h3
+        We have
+        (#{@event.spots_filled} of #{@event.spots})
       %i
-        #{@event.spots_remaining} &nbsp Spots Remaining
-
-  %h2 Volunteer
-  %p#love-atlanta-json-feedback
-    JSON Response goes here
-  %input#love-atlanta-volunteer-name.form-control{:placeholder => "name"}
-  %br
-  %input#love-atlanta-volunteer-email.form-control{:placeholder => "email"}
-  %br
-  %button#love-atlanta-volunteer-json-trigger.btn.btn-primary Volunteer
-
+        #{@event.spots_remaining} Spots Remaining
+      %br
+      %br
+      - @event.volunteers.each do | volunteer |
+        #{link_to volunteer.name, volunteer} is helping.
+        %br
 
 :javascript
   $('#love-atlanta-volunteer-json-trigger').click(function(e){
