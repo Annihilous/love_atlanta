@@ -15,7 +15,9 @@ class EventsController < ApplicationController
 
   # GET /events/new
   def new
-    # raise "#{params}"
+    unless Partner.all.count > 0
+      redirect_to new_partner_path, notice: "You must have a Partner to sponsor a new event."
+    end
     @event = Event.new
   end
 
@@ -35,7 +37,6 @@ class EventsController < ApplicationController
   # POST /events.json
   def create
     @event = Event.new(event_params)
-    @event.partner_id = params[:partner_id]
 
     respond_to do |format|
       if @event.save
@@ -80,6 +81,6 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :description, :spots, :start_time, :end_time)
+      params.require(:event).permit(:name, :description, :partner_id, :spots, :start_time, :end_time)
     end
 end

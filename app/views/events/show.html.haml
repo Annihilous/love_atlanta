@@ -5,9 +5,10 @@
       %h1
         %strong
           = @event.name
-      %p
-        Brought to you by
-        = @event.partner.name
+      - if @event.partner.present?
+        %p
+          Brought to you by
+          = @event.partner.name
     .col-xs-6.text-right
       %h3
         #{@event.start_time.strftime("%Y-%m-%d")}

@@ -33,4 +33,5 @@
             = link_to 'partners.json', partners_path(format: :json), target: :blank
           %li
             = link_to 'events.json', events_path(format: :json), target: :blank
+  = render 'layouts/alerts'
   = yield

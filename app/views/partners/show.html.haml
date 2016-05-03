@@ -10,6 +10,13 @@
   = link_to @partner.website, target: :blank do
     = @partner.website
 
-  %h3 Events
+  %hr
+
+  .pull-right
+    = link_to new_event_path, class: "btn btn-primary" do
+      New Event
+  %h2 Events
+
   - @partner.events.each do | event |
     = link_to "#{event.name}", event
+    %br
