@@ -32,6 +32,9 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
+# Allow cross browser access
+gem 'rack-cors', :require => 'rack/cors'
+
 group :development, :test do
   # Use sqlite3 as the database for Active Record
   gem 'sqlite3'
@@ -46,7 +49,6 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
 end
-
 
 gem 'simple_form'
 gem 'haml-rails', '~> 0.9'
