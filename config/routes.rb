@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :addresses
   resources :partners
   resources :events do
     member do
