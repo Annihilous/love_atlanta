@@ -19,6 +19,7 @@ class EventsController < ApplicationController
       redirect_to new_partner_path, notice: "You must have a Partner to sponsor a new event."
     end
     @event = Event.new
+    @event.build_address
   end
 
   # GET /events/1/edit
@@ -81,6 +82,12 @@ class EventsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def event_params
-      params.require(:event).permit(:name, :description, :partner_id, :spots, :start_time, :end_time)
+      params.require(:event).permit(  :name,
+                                      :description, 
+                                      :partner_id, 
+                                      :spots, 
+                                      :start_time, 
+                                      :end_time,
+                                      address_attributes: [:street_line_1, :street_line_2, :city, :state, :zip, :latitude, :longitude])
     end
 end

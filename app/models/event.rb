@@ -3,6 +3,9 @@ class Event < ActiveRecord::Base
   # validates_presence_of :name, :description, :spots, :start_time, :end_time
 
   belongs_to :partner
+  belongs_to :address
+
+  accepts_nested_attributes_for :address
 
   has_many :registrations
   has_many :volunteers, through: :registrations
