@@ -5,12 +5,22 @@ class EventsController < ApplicationController
   # GET /events.json
   def index
     @events = Event.all
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @events, include: [:partner, :address] }
+    end
   end
 
   # GET /events/1
   # GET /events/1.json
   def show
     @volunteer = Volunteer.new
+
+    respond_to do |format|
+      format.html
+      format.json { render json: @event, include: [:partner, :address] }
+    end
   end
 
   # GET /events/new
