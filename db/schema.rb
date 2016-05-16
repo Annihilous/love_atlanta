@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160513162231) do
+ActiveRecord::Schema.define(version: 20160516222713) do
 
   create_table "addresses", force: :cascade do |t|
     t.string   "street_line_1"
@@ -31,10 +31,13 @@ ActiveRecord::Schema.define(version: 20160513162231) do
     t.integer  "spots"
     t.datetime "start_time"
     t.datetime "end_time"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
     t.integer  "partner_id"
     t.integer  "address_id"
+    t.boolean  "is_all_ages",    default: true, null: false
+    t.string   "activity"
+    t.string   "featured_image"
   end
 
   create_table "partners", force: :cascade do |t|

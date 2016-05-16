@@ -98,6 +98,9 @@ class EventsController < ApplicationController
                                       :spots, 
                                       :start_time, 
                                       :end_time,
+                                      :is_all_ages,
+                                      :activity,
+                                      :featured_image,
                                       address_attributes: [:street_line_1, :street_line_2, :city, :state, :zip, :latitude, :longitude])
     end
 end

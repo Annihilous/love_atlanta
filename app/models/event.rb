@@ -10,6 +10,8 @@ class Event < ActiveRecord::Base
   has_many :registrations
   has_many :volunteers, through: :registrations
 
+  ACTIVITIES = {'Clean Up' => 'clean_up', 'Pass Out Food' => 'pass_out_food', 'Dance Performance' => 'dance_performance', 'Other' => 'other'}
+
   def add_volunteer(name, email)
     @volunteer = Volunteer.find_or_create_by(name: name, email: email)
     @volunteer.save!
