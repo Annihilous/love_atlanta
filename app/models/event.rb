@@ -10,6 +10,8 @@ class Event < ActiveRecord::Base
   has_many :registrations
   has_many :volunteers, through: :registrations
 
+  mount_uploader :featured_image, FeaturedImageUploader
+
   ACTIVITIES = {'Clean Up' => 'clean_up', 'Pass Out Food' => 'pass_out_food', 'Dance Performance' => 'dance_performance', 'Other' => 'other'}
 
   def add_volunteer(name, email)
